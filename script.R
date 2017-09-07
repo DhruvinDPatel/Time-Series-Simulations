@@ -20,6 +20,7 @@ for(i in 1:base.series.num){
   base.offset <- 100  # mean stock price
   magnifying.factor <- 10 # to enlarge base
   total.points <- 96000 # no of points to simulate
+  half <- total.points/2
 
   # garchSim requires garchSpec
   spec = garchSpec(model = list(alpha = alpha.beta.matrix[i,1],
@@ -55,11 +56,11 @@ for(i in 1:base.series.num){
       
       # can vary by param accordingly scaling of plots
       left.seq <- rev(seq(from=temp.intercept[1],
-                          by=-temp.slope[1]/4800,
-                          length.out = 48000))
+                          by=-temp.slope[1]/(half/10),
+                          length.out = half))
       right.seq <- rev(seq(to=-temp.intercept[2],
-                            by=-temp.slope[2]/4800,
-                            length.out = 48000))
+                            by=-temp.slope[2]/(half/10),
+                            length.out = half))
       
       for(l in 1:length(jump.r)){
         
@@ -68,7 +69,8 @@ for(i in 1:base.series.num){
         right.seq[right.seq >= jump.r[l]] <- jump.r[l]
         
         # base + jump
-        sim1 <- c(base.sim[1:48000]+left.seq,base.sim[48001:96000]+right.seq)
+        sim1 <- c(base.sim[1:half] + left.seq,
+                  base.sim[half+1:total.points] + right.seq)
         
         # verify signs of param
         p2 <- paste(i,temp.intercept[1],temp.intercept[2],temp.slope[1],
@@ -89,7 +91,7 @@ for(i in 1:base.series.num){
         
         # putting legend on topright corner having information about params
         legend(x ="topright", xpd = TRUE, legend=p3, inset=c(-0.25,0),
-                      title = "param", bty = 'n')
+                      title = "Param", bty = 'n')
         dev.off()
       }
     }
