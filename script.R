@@ -1,4 +1,5 @@
 library('fGarch')
+options(scipen = 999, digits.secs = 3)
 
 #################
 Author: Dhruvin Patel
@@ -66,6 +67,8 @@ for(i in 1:base.series.num){
         
         # truncation of jump vector done
         left.seq[left.seq <= -jump.r[l]] <- -jump.r[l]
+        left.seq[left.seq >= jump.r[l]] <- jump.r[l]
+        right.seq[right.seq <= jump.r[l]] <- -jump.r[l]
         right.seq[right.seq >= jump.r[l]] <- jump.r[l]
         
         # base + jump
@@ -80,7 +83,7 @@ for(i in 1:base.series.num){
         png(filename = p2)
 
         # diving plot area for legend and series plot
-        par(mar=c(4.1, 4.1, 4.1, 8.1), xpd=TRUE)
+        par(mar=c(4.1, 4.1, 4.1, 6.1), xpd=TRUE)
         plot.ts(sim1, ylim = yaxis.limits)
         p3 <- c(paste('Base',i,sep = ':'),
                 paste('left_int',temp.intercept[1],sep = ':'),
@@ -90,8 +93,8 @@ for(i in 1:base.series.num){
                 paste('jump',jump.r[l],sep = ':'))
         
         # putting legend on topright corner having information about params
-        legend(x ="topright", xpd = TRUE, legend=p3, inset=c(-0.25,0),
-                      title = "Param", bty = 'n')
+        legend(x = total.points + 1, y = max(yaxis.limits) + 1, xpd = TRUE,
+               legend=p3, title = "Param", bty = 'n')
         dev.off()
       }
     }

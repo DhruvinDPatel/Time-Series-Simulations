@@ -1,9 +1,9 @@
 # Time-Series-Simulations
 
 During my summer internship at [AcquireMedia Inc.](http://www.acquiremedia.com/), Roseland, NJ, I worked on some internal projects.
-This script is belong to one of the project. I tried simulating time series based on [GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity) coefficient(statistical
-alpha and beta. Look into img folder for some sample plots.
+This script belongs to one of the projects. I tried simulating time series based on [GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity) coefficient(statistical)
+alpha and beta. Look into img folder for some sample plots. Script has many variables that can be chosen accordingly to generate simulation with base series and jump vector added.
 
-Following image has explanations of parameters that can be used to create different simulations.
+Following image has example of parameters that can be used to create different simulations.
 
-![info_plot](img/info)
+![info_plot](img/info.png)
