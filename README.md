@@ -7,3 +7,6 @@ alpha and beta. Look into img folder for some sample plots. Script has many vari
 Following image has example of parameters that can be used to create different simulations.
 
 ![info_plot](img/info.png)
+![info_plot_1](img/1.png)
+![info_plot_2](img/2.png)
+![info_plot_3](img/3.png)
